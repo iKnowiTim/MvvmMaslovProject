@@ -16,20 +16,13 @@ using System.Windows.Shapes;
 namespace MvvmMaslovProject.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Login.xaml
+    /// Логика взаимодействия для Excel.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Excel : Page
     {
-        public Login()
+        public Excel()
         {
             InitializeComponent();
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            tb.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-        }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmMaslovProject.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,35 +14,55 @@ namespace MvvmMaslovProject.ViewModel
 {
     public class PageLoginViewModel : INotifyPropertyChanged
     {
+        [Obsolete]
         public PageLoginViewModel()
         {
-            Register = new Pages.Register();
-            PageRegister = new RelayCommand(ChangeCurrentPage);
+            InitCommand();
         }
 
-        private Page Register;
+        [Obsolete]
+        public void InitCommand()
+        {
+            SignIn = new RelayCommand(Login, CanPressBtnSignIn);
+        }
+
+        #region Свойства
+        private string _userLogin = "";
+        public string UserLogin
+        {
+            get { return _userLogin; }
+            set 
+            { 
+                _userLogin = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(UserLogin)));
+            }
+        }
+
+        private string _userPassword = "";
+        public string UserPassword
+        {
+            get { return _userPassword; }
+            set 
+            { 
+                _userPassword = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(UserPassword)));
+            }
+        }
+        #endregion
+
+        public bool CanPressBtnSignIn(object parameter)
+        {
+            return UserLogin.Length > 0 && UserPassword.Length > 0;
+        }
+
+        public ICommand SignIn { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Page _currentPage;
-        public Page CurrentPage
+        [Obsolete]
+        public void Login()
         {
-            get
-            {
-                return _currentPage;
-            }
-            set
-            {
-                _currentPage = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(CurrentPage)));
-            }
-        }
-
-        public ICommand PageRegister { get; set; }
-        
-
-        public void ChangeCurrentPage()
-        {
-            
+            UserManager.LoginUser(UserLogin, UserPassword);
         }
     }
 }

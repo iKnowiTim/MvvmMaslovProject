@@ -24,5 +24,11 @@ namespace MvvmMaslovProject.Pages
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            tb.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
     }
 }

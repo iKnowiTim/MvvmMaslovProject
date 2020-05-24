@@ -22,10 +22,12 @@
                        Margin="0 5 5 5"/>
             <TextBox Height="35"
                      Margin="5 0 0 0"
+                     TextChanged="TextBox_TextChanged"
                      FontSize="25"
                      FontWeight="Bold"
                      Foreground="#071C71"
                      HorizontalContentAlignment="Left"
+                     Text="{Binding UserLogin, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                      Padding="15 0 15 0"
                      VerticalContentAlignment="Center"/>
             <TextBlock Text="Password"
@@ -37,6 +39,8 @@
                      Margin="5 0 0 0"
                      FontSize="25"
                      FontWeight="Bold"
+                     TextChanged="TextBox_TextChanged"
+                     Text="{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                      Foreground="#071C71"
                      HorizontalContentAlignment="Left"
                      Padding="15 0 15 0"
@@ -48,15 +52,9 @@
                     BorderThickness="0"
                     Content="Sign In"
                     Foreground="#6F83D6"
-                    FontSize="25"/>
-            <Button Height="40"
-                    Margin="0 20 0 0"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    Content="Register"
-                    Foreground="#6F83D6"
                     FontSize="25"
-                    Command="{Binding PageRegister}"/>
+                    Command="{Binding SignIn}"/>
+            
         </StackPanel>
     </Grid>
 </Page>

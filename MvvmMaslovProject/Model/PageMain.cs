@@ -4,14 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace MvvmMaslovProject.Model
 {
-    static class ManagerPages 
+    public class PageMain : INotifyPropertyChanged
     {
-        static PageMain _currentPage;
-        static public PageMain CurrentPage
+        public event PropertyChangedEventHandler PropertyChanged;
+        private PageMain _currentPage;
+        public PageMain CurrentPage
         {
             get
             {
@@ -20,12 +20,11 @@ namespace MvvmMaslovProject.Model
             set
             {
                 _currentPage = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(CurrentPage)));
             }
         }
 
-        static public void ChangePage(PageMain page)
-        {
-            
-        }
+        public PageMain Login;
+        public PageMain Register;
     }
 }
