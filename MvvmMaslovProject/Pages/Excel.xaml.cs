@@ -18,8 +18,9 @@ namespace MvvmMaslovProject.Pages
     /// <summary>
     /// Логика взаимодействия для Excel.xaml
     /// </summary>
-    public partial class Excel : Page
+    public partial class Excel : UserControl
     {
+        
         public Excel()
         {
             InitializeComponent();

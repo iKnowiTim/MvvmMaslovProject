@@ -14,6 +14,7 @@ namespace MvvmMaslovProject.Model
         private static User _users { get; set; }
         private static PeopleEntities db = new PeopleEntities();
 
+        //Регистрация пользователя
         public static void RegistrationUser(string name, string lastName, string login, string password)
         {
             _users = new User(name, lastName, login, password);
@@ -22,8 +23,9 @@ namespace MvvmMaslovProject.Model
             db.SaveChanges();
         }
 
+        //Вход пользователя
         [System.Obsolete]
-        public static void LoginUser(string login, string password)
+        public static bool LoginUser(string login, string password)
         {
             db = new PeopleEntities();
             db.User.Load();
@@ -31,11 +33,21 @@ namespace MvvmMaslovProject.Model
             var user = db.User
                 .Where(u => u.Login == login && u.Password == password)
                 .FirstOrDefault();
+            
             if (user != null)
-                MessageBox.Show("Добро пожаловать!");
-            if (user == null)
-                MessageBox.Show("Не верно введен логиг или пароль!");
+            {//Присваивание данных, чтобы потом использовать их в личном кабинете
+                _users = user;
+                return true;
+            }
+                
+            else 
+                return false;
+        }
 
+        //То что присвоили, возращаем.
+        public static User GetInfo()
+        {
+            return _users;
         }
     }
 }

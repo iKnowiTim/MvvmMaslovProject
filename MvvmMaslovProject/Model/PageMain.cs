@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//Реализация отстой, не использовал, можете не смотреть
 namespace MvvmMaslovProject.Model
 {
     public class PageMain : INotifyPropertyChanged

@@ -9,10 +9,12 @@ using System.Windows.Input;
 
 namespace MvvmMaslovProject.ViewModel
 {
-    public class PageRegisterViewModel : INotifyPropertyChanged
+    public class PageRegisterViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public PageRegisterViewModel()
+        private MainWindowViewModel _mainWindowViewModel;
+        public PageRegisterViewModel(MainWindowViewModel mainWindowViewModel)
         {
+            _mainWindowViewModel = mainWindowViewModel;
             InitCommands();
         }
 
@@ -20,6 +22,7 @@ namespace MvvmMaslovProject.ViewModel
 
         public void InitCommands()
         {
+            GoLoginCommand = new RelayCommand(() => _mainWindowViewModel.SwitchPage("Login"),x => true) ;
             RegistrationUserCommand = new RelayCommand(RegistrationUser, CanExecuteRegisterUserCommand);
         }
 
@@ -69,7 +72,8 @@ namespace MvvmMaslovProject.ViewModel
         }
 
         public ICommand RegistrationUserCommand { get; set; }
-
+        public ICommand GoLoginCommand { get; set; }
+        //Изменение активности кнопки при условии
         private bool CanExecuteRegisterUserCommand(object parameter)
         {
             return UserName.Length > 0 && UserLastName.Length > 0 &&

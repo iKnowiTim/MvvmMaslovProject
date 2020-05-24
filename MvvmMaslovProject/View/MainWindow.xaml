@@ -13,6 +13,10 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="bool2vis"/>
+    </Window.Resources>
+    
     
     <Grid Background="#052F6D">
         <Grid.ColumnDefinitions>
@@ -20,25 +24,7 @@
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
         <Grid>
-            <StackPanel VerticalAlignment="Top">
-                <Button Height="40"
-                        Margin="5"
-                        Background="Transparent"
-                        Foreground="#437DD4"
-                        BorderThickness="0"
-                        Content="REG"
-                        FontSize="20"
-                        FontWeight="Bold"
-                        Command="{Binding PageRegister}"/>
-                <Button Height="40"
-                        Margin="5"
-                        Background="Transparent"
-                        Foreground="#437DD4"
-                        BorderThickness="0"
-                        Content="LOG"
-                        FontSize="20"
-                        FontWeight="Bold"
-                        Command="{Binding PageLogin}"/>
+            <StackPanel VerticalAlignment="Top" Visibility="{Binding Path=SignedIn, Converter={StaticResource bool2vis}}">
                 <Button Height="40"
                         Margin="5"
                         Background="Transparent"
@@ -48,10 +34,27 @@
                         FontSize="20"
                         FontWeight="Bold"
                         Command="{Binding PageExcel}"/>
+                <Button Height="40"
+                        Margin="5"
+                        Background="Transparent"
+                        Foreground="#437DD4"
+                        BorderThickness="0"
+                        Content="User"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Command="{Binding ProfileCommand}"/>
+                <Button Height="40"
+                        Margin="5"
+                        Background="Transparent"
+                        Foreground="#437DD4"
+                        BorderThickness="0"
+                        Content="Exit"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Command="{Binding ExitAccountCommand}"/>
             </StackPanel>
         </Grid>
-        <Frame Grid.Column="1"
-                   Content="{Binding CurrentPage}"
-                   NavigationUIVisibility="Hidden"/>
+        <ContentControl Content="{Binding CurrentPage}"
+                        Grid.Column="1"/>
     </Grid>
 </Window>

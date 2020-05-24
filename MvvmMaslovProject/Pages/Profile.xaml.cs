@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace MvvmMaslovProject.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Register.xaml
+    /// Логика взаимодействия для Profile.xaml
     /// </summary>
-    public partial class Register : UserControl
+    public partial class Profile : UserControl
     {
-        public Register()
+        public Profile()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            tb.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

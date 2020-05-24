@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmMaslovProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,13 @@ namespace MvvmMaslovProject.Pages
     /// <summary>
     /// Логика взаимодействия для Login.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Login : UserControl
     {
+        
         public Login()
         {
             InitializeComponent();
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

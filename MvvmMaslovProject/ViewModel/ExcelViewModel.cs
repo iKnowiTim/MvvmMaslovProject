@@ -12,15 +12,18 @@ using MvvmMaslovProject.ModelDb;
 
 namespace MvvmMaslovProject.ViewModel
 {
-    public class ExcelViewModel : INotifyPropertyChanged
+    public class ExcelViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public ExcelViewModel()
+        private MainWindowViewModel _mainWindowViewModel;
+        public ExcelViewModel(MainWindowViewModel mainWindowViewModel)
         {
+            _mainWindowViewModel = mainWindowViewModel;
+            //Подгрузка данных в Свойство MaslovExcels
             PeopleEntities db = new PeopleEntities();
             db.MaslovExcel.Load();
             MaslovExcels = db.MaslovExcel.Local.ToBindingList();
         }
-
+        //Создание свойства, в которую загрузим данные таблицы
         private IEnumerable<MaslovExcel> _maslovExcel;
         public IEnumerable<MaslovExcel> MaslovExcels
         {
@@ -76,7 +79,7 @@ namespace MvvmMaslovProject.ViewModel
         }
 
 
-
+        //Реакция на изменение
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

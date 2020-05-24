@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-
+//Реализация отстой, не использовал, можете не смотреть
 namespace MvvmMaslovProject.Model
 {
     static class ManagerPages 

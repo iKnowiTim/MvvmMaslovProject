@@ -1,9 +1,22 @@
 ﻿<Application x:Class="MvvmMaslovProject.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:MvvmMaslovProject.Pages"
              xmlns:local="clr-namespace:MvvmMaslovProject"
+             xmlns:vm="clr-namespace:MvvmMaslovProject.ViewModel"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type vm:PageLoginViewModel}">
+            <pages:Login/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PageRegisterViewModel}">
+            <pages:Register/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ExcelViewModel}">
+            <pages:Excel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
+            <pages:Profile/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -12,18 +12,24 @@ using System.Windows.Navigation;
 
 namespace MvvmMaslovProject.ViewModel
 {
-    public class PageLoginViewModel : INotifyPropertyChanged
+    public class PageLoginViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        private MainWindowViewModel _mainWindowViewModel;    
         [Obsolete]
-        public PageLoginViewModel()
+        public PageLoginViewModel(MainWindowViewModel mainWindowViewModel)
         {
+            _mainWindowViewModel = mainWindowViewModel;
             InitCommand();
         }
+
+        
+        
 
         [Obsolete]
         public void InitCommand()
         {
-            SignIn = new RelayCommand(Login, CanPressBtnSignIn);
+            GoRegisterCommand = new RelayCommand(GoRegister, x => true);
+            SignInCommand = new RelayCommand(Login, CanPressBtnSignIn);
         }
 
         #region Свойства
@@ -55,14 +61,26 @@ namespace MvvmMaslovProject.ViewModel
             return UserLogin.Length > 0 && UserPassword.Length > 0;
         }
 
-        public ICommand SignIn { get; set; }
+        public ICommand SignInCommand { get; set; }
+
+        public ICommand GoRegisterCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        //Проверка на вход
         [Obsolete]
         public void Login()
         {
-            UserManager.LoginUser(UserLogin, UserPassword);
+            bool success = UserManager.LoginUser(UserLogin, UserPassword);
+            if (success)
+            {
+                _mainWindowViewModel.SignIn();
+            }
+            else MessageBox.Show("Не верно введен пароль или логин!");
         }
+        public void GoRegister()
+        {
+            _mainWindowViewModel.SwitchPage("Register");
+        }
+        
     }
 }

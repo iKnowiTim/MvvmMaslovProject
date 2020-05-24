@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
+//Реализация интерфейса
 namespace MvvmMaslovProject.ViewModel
 {
     public class RelayCommand : ICommand
